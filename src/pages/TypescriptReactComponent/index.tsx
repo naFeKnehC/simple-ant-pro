@@ -15,7 +15,7 @@ const TypescriptReactComponent = () => {
 
 export default TypescriptReactComponent;
 
-type StatusOneChildComponent = {
+type    StatusOneChildComponent = {
   status: true;
   name: string;
 };
