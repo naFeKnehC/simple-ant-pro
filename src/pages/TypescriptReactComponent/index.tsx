@@ -8,7 +8,7 @@ const TypescriptReactComponent = () => {
   return (
     <div>
       test
-      <ChildComponent status={true} name={'aaa'} />
+      <ChildComponent name={'1'} />
     </div>
   );
 };
@@ -16,7 +16,7 @@ const TypescriptReactComponent = () => {
 export default TypescriptReactComponent;
 
 type StatusOneChildComponent = {
-  status: true;
+  status?: true;
   name: string;
 };
 
@@ -35,6 +35,6 @@ type ChildComponentProps =
   | StatusTwoChildComponent
   | StatusThreeChildComponent;
 
-const ChildComponent: React.FC<ChildComponentProps> = () => {
+const ChildComponent: React.FC<ChildComponentProps> = ({ status = true, name, age, address }) => {
   return <div></div>;
 };
