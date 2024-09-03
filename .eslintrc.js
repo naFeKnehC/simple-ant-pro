@@ -6,5 +6,6 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/no-use-before-define': 'warn',
+    '@typescript-eslint/no-unused-vars': 'warn',
   },
 };
