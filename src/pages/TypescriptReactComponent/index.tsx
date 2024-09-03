@@ -15,17 +15,17 @@ const TypescriptReactComponent = () => {
 
 export default TypescriptReactComponent;
 
-type StatusOneChildComponent = {
+type   StatusOneChildComponent = {
   status?: true;
   name: string;
 };
 
-type  StatusTwoChildComponent = {
+type      StatusTwoChildComponent = {
   status: false;
   age: number;
 };
 
-type     StatusThreeChildComponent = {
+type      StatusThreeChildComponent = {
   status: 'three';
   address: string;
 };
