@@ -20,17 +20,17 @@ type StatusOneChildComponent = {
   name: string;
 };
 
-type StatusTwoChildComponent = {
+type  StatusTwoChildComponent = {
   status: false;
   age: number;
 };
 
-type StatusThreeChildComponent = {
+type     StatusThreeChildComponent = {
   status: 'three';
   address: string;
 };
 
-type ChildComponentProps =
+type    ChildComponentProps =
   | StatusOneChildComponent
   | StatusTwoChildComponent
   | StatusThreeChildComponent;
