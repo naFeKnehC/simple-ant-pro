@@ -8,7 +8,7 @@ const TypescriptReactComponent = () => {
   return (
     <div>
       test
-      <ChildComponent name={'1'} />
+      <ChildComponent status={'three'} address={'1'} />
     </div>
   );
 };
@@ -18,16 +18,22 @@ export default TypescriptReactComponent;
 type StatusOneChildComponent = {
   status?: true;
   name: string;
+  age: never;
+  address: never;
 };
 
 type StatusTwoChildComponent = {
   status: false;
   age: number;
+  name: never;
+  address: never;
 };
 
 type StatusThreeChildComponent = {
   status: 'three';
   address: string;
+  name: never;
+  age: never;
 };
 
 type ChildComponentProps =
@@ -36,5 +42,15 @@ type ChildComponentProps =
   | StatusThreeChildComponent;
 
 const ChildComponent: React.FC<ChildComponentProps> = ({ status = true, name, age, address }) => {
-  return <div></div>;
+  if (status === 'three') {
+    console.log(age);
+  }
+  return (
+    <div>
+      {status}
+      {name}
+      {age}
+      {address}
+    </div>
+  );
 };
