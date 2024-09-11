@@ -111,3 +111,64 @@
 //
 //   x; // 推断为 string
 // }
+
+// function reverse(str: string): string;
+// function reverse(arr: any[]): any[];
+// function reverse(stringOrArray: string | any[]): string | any[] {
+//   if (typeof stringOrArray === 'string') return stringOrArray.split('').reverse().join('');
+//   else return stringOrArray.slice().reverse();
+// }
+//
+// reverse([1, 2, 3]);
+
+/**
+ * 函数重载在 TypeScript 中主要是针对入参（参数类型）进行严格的类型校验。而对于出参（返回类型），TypeScript 只要求最终函数实现的返回类型和所有重载签名的返回类型兼容，但不会对每个重载签名的返回类型进行逐一强制验证。
+ *
+ * 具体说明：
+ *
+ *  1.	入参的校验
+ *  •	TypeScript 在函数重载时，确保传入的参数类型必须匹配某个重载签名。例如，如果你有 f('a') 和 f('b') 两个不同的签名，那么调用 f('c') 就会触发编译错误，因为没有一个签名可以接受 'c' 作为参数。
+ *  2.	出参的宽松处理
+ *  •	当 TypeScript 检查函数实现时，它只会确保返回类型与函数实现的类型声明相兼容。对于重载签名的返回类型，TypeScript 不会逐个对照检查，只会验证返回的类型是否符合实现部分声明的返回类型。
+ *  •	举个例子，在函数实现中声明返回类型为 number | string，那么不管哪个重载声明了什么返回类型，只要返回的类型是 number 或 string，TypeScript 就不会报错，哪怕重载声明中有些签名要求返回 string 而你实际返回了 number。
+ */
+// function f(x: 'a'): 1;
+// function f(x: 'b'): string;
+// function f(x: 2): number;
+// function f(x: string): number;
+// function f(x: string | number): string | number {
+//   if (x === 'a') {
+//     return 1;
+//   } else if (x === 'b') {
+//     return 2; // 虽然签名要求返回 string, 实际返回 number
+//   } else if (x === 2) {
+//     return 3;
+//   } else {
+//     return 4;
+//   }
+// }
+//
+// f(3); // 报错
+// f('c');
+
+/**
+ * 对象表示
+ */
+// type createF = {
+//   (x: 'a'): 1;
+//   (x: 'b'): string;
+//   (x: 2): number;
+//   (x: string): number;
+// };
+//
+// const f: createF = (x: 'a' | 'b' | 2 | string): any => {
+//   if (x === 'a') {
+//     return 1; // 符合重载签名，返回 1
+//   } else if (x === 'b') {
+//     return 'some string'; // 符合重载签名，返回 string
+//   } else if (x === 2) {
+//     return 3; // 符合重载签名，返回 number
+//   } else {
+//     return 4; // 符合重载签名，返回 number
+//   }
+// };
